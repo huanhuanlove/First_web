@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Java</title>
+		<script type="text/javascript">
+			document.write(Math.abs(7.25) + "<br />")
+			
+		</script>
+		<style type="text/css" id="boss">
+			.sun{width: 100px;height: 100px;background: orange;display: block;margin-top: 50px;}
+			.square{width: 200px;height: 50px;background: palevioletred;margin: 50px 0 20px 200px;}
+			.square span{padding: 10px 0 0 70px;display: block;}
+			#select{width: 150px;height: 40px;background: gray;margin: 20px 0 10px 200px;}
+			#select1{width: 350px;position:absolute;display:none;height: 100px;background: orchid;margin: 10px 300px;}
+		</style>
+	</head>
+	<body>
+		
+		<!--<script>
+			prompt("欢迎来到王者荣耀");
+		</script>-->
+		
+		<script>
+		var a="你好啊"
+		var b="刘欢欢"
+//		链接a,b两个函数
+		document.write(a.concat(b)+"<br/>")
+//		输出当时时间
+		document.write(Date())  
+		</script>
+		
+		
+		<!--//只适用于id选择器-->
+		<div id="names">
+			
+		</div>
+		<script>
+			document.getElementById('names').innerHTML = "世界你好"
+		</script>
+		
+		<!--//只适用于类选择器-->
+		<div class="names">
+			
+		</div>
+		<script>
+			document.getElementsByClassName('names')[0].innerHTML = "梦想"
+		</script>
+		
+		<!--//适用于所有标签选择器，若有多个another类标签也只选择第一个-->
+		<div id="each">
+			<p class="another"></p>
+		</div>
+		<script>
+			document.querySelector("#each .another").innerHTML = "理想"
+		</script>
+		
+		<!--//适用于所有标签选择器，有多个相同类名选择某一个方法(.anther)[下标]-->
+		<div id="each">
+			<p class="another"></p>
+			<p class="another"></p>
+		</div>
+		<script>
+			document.querySelectorAll("#each .another")[1].innerHTML = "毅力"
+		</script>
+		
+		<!--通过标签选择-->
+		<div id="each">
+			<p class="another"></p>
+		</div>
+		<script>
+			document.getElementsByTagName("p")[2].innerHTML = "遗址"
+		</script>
+		
+		<!--总结： 
+		 	除了document.getElementbyid之外其他都可以不带document。
+		 	带document的是在整篇文档上找对应的标签及类，不带document如
+		 	document.getElementbyid(".box").getElementbyTagName("p")
+		 	即为在id为box的选择器中查找子标签-->
+		 	
+		 
+	 	<!--事件：
+	 	鼠标事件   键盘事件   系统事件   表单事件 
+	 	onclick   单机事件 ，ondblclick   双击事件   
+	 	onmouseover/onmouseenter   移入事件 ， onmouseout/onmouseleave 移出事件
+	 	onfocus  获得焦点， onblur  失去焦点
+	 	-->
+	 	
+	<!--方法一-->
+	 	<!--<script>
+	 		document.getElementById("button").onmouseover = function(){
+	 			alert("很牛逼");
+	 		}
+	 	</script>-->
+ 	<!--方法二-->
+	 	<script> 
+	 		document.getElementById("button").onclick = a;
+	 		function a(){
+	 			alert("我的世界");
+	 		}	
+	 	</script>
+	<!--方法三  直接在input标签中加入onclick="a()" 再建个a函数-->
+	
+		<div class="square" title="你好">
+			<span>点我试试</span>
+		</div>
+		<script>
+			var square1 = document.getElementsByClassName("square")[0];
+			square1.onclick = function(){
+				//this.innerHTML = "百度首页";
+				//把div里的内容读出代码
+			
+			square1.innerHTML += "百度首页";
+			
+			//获取div中标签值
+			var biao = square1.title;
+			//修改div等标签中的值,如果id被改则下面script中仍适用老id
+			square1.title = "大家好";
+			alert( square1.title);
+			
+			//获取标签属性 getAttribute("x");
+			//创建标签属性 setAttribute("a" , "b");
+			//删除标签属性 removeAttribute("x");
+			square1.setAttribute("iii" , "快活哦");
+			
+			
+			//用js加样式,在style标签中加入id或class。
+			var oboss = document.getElementById("boss");
+			//加入一个样式
+			oboss.style.float = "right";
+			//加入多个样式
+			oboss.style.cssText = "float: right;margin-left: 20px;";
+			
+			
+		}
+		</script>
+		<script>
+		var obj={name:"小明",age:20};
+		if(delete obj.name){
+			document.write("name删除成功。");
+		}else{
+			document.write("name删除失败。");
+		}
+		document.write(obj.name);
+		</script>
+		
+		<!--制作一个下拉框-->
+		<input type="button" id="select" value="点我"/>
+		<div id="select1">
+			
+		</div>	
+		<script>
+			window.onload=function(){
+				var oselect=document.getElementById("select");
+				var oselect1=document.getElementById("select1");
+				
+				oselect.onclick=function(ev){
+					//使其兼容多个浏览器
+					var oevent=ev || event;
+					//显示设置的div
+					oselect1.style.display='block';
+					//取消冒泡
+					oevent.cancelBubble=true;
+				};
+				document.onclick=function(){
+					oselect1.style.display='none';
+				};
+			};
+		</script>
+		
+		
+		<script>
+			//创建对象
+			var people1 ={name:"刘欢欢",age:20,gender:"女"};
+			console.log(people1);
+			
+//			对象的枚举,for...in语句.
+
+			var obj = {
+				name:"孙悟空",
+				age:18,
+				gender:"男",
+			}
+			for(var n in obj){
+				console.log("属性名："+n);
+				console.log("属性值："+obj[n]);
+			}
+			
+			//创建函数1
+			
+//			a,b为实参; 1,3,为形参为a,b赋值
+//			当形参多于实参时按实参的前几个赋值,多余的忽略;
+//			当形参少于实参时输出--"未知的"
+			function fun2(r){
+				return 3.14*r*r;
+			}
+			result=fun2(10);
+			console.log(result);
+			
+			//创建函数2  把函数赋值给变量
+			var fun3=function(){
+				console.log("尼玛");
+			}
+			fun3();
+			
+//			return 即返回值,在函数中使用应放在最后,
+//			一旦用return其后的语句便不再执行，直接退出函数
+//			当实参过多时可以考虑创建一个对象作为实参
+		</script>
+		<script>
+			var name="全局";
+			function fun(){
+				console.log(this.name);
+			}
+			var obj1={
+				name:"李四",
+				age:19,
+				sayName:fun
+			};
+			
+			var obj2={
+				name:"张三",
+				age:22,
+				sayName:fun
+			};
+			obj1.sayName();
+		</script>
+	</body>
+</html>
